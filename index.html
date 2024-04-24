@@ -6,27 +6,46 @@
     <title>Client Battleship-ia</title>
     <script type="module" src="/main.js" defer></script>
 </head>
-<body>
-    <form id="joueursForm">
-        <label for="joueur1Nom">Joueur 1 Nom:</label><br>
-        <input type="text" id="joueur1Nom" name="joueur1Nom" required><br>
+<body class="">
+    <main class="bg-stone-900 min-h-screen flex flex-col flex-1">
+        <div class="flex flex-col md:flex-row justify-center items-center mt-5">
+            <form class="bg-stone-500 rounded-2xl w-full md:w-1/2 p-4" id="joueursForm">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <h1 class="text-2xl font-bold text-center pb-3 uppercase">Joueur 1</h1>
+                        <label for="joueur1Nom">
+                            <input type="text" id="joueur1Nom" name="joueur1Nom" placeholder="Nom" required class="w-full mb-2 border-2 border-black rounded-2xl p-3" />
+                        </label>
 
-        <label for="joueur1Url">Joueur 1 Url:</label><br>
-        <input type="text" id="joueur1Url" name="joueur1Url" required><br>
+                        <label for="joueur1Url">
+                            <input type="text" id="joueur1Url" name="joueur1Url" placeholder="Url" required class="w-full mb-2 border-2 border-black rounded-2xl p-3" />
+                        </label>
 
-        <label for="joueur1Token">Joueur 1 Token:</label><br>
-        <input type="text" id="joueur1Token" name="joueur1Token" required><br><br>
+                        <label for="joueur1Token">
+                            <input type="text" id="joueur1Token" name="joueur1Token" placeholder="Token" required class="w-full mb-2 border-2 border-black rounded-2xl p-3" />
+                        </label>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-center pb-3 uppercase">Joueur 2</h1>
+                        <label for="joueur2Nom">
+                            <input type="text" id="joueur2Nom" name="joueur2Nom" placeholder="Nom" required class="w-full mb-2 border-2 border-black rounded-2xl p-3" />
+                        </label>
 
-        <label for="joueur2Nom">Joueur 2 Nom:</label><br>
-        <input type="text" id="joueur2Nom" name="joueur2Nom" required><br>
+                        <label for="joueur2Url">
+                            <input type="text" id="joueur2Url" name="joueur2Url" placeholder="Url" required class="w-full mb-2 border-2 border-black rounded-2xl p-3" />
+                        </label>
 
-        <label for="joueur2Url">Joueur 2 Url:</label><br>
-        <input type="text" id="joueur2Url" name="joueur2Url" required><br>
-
-        <label for="joueur2Token">Joueur 2 Token:</label><br>
-        <input type="text" id="joueur2Token" name="joueur2Token" required><br><br>
-
-        <button type="submit">Jouer !</button>
-    </form>
+                        <label for="joueur2Token">
+                            <input type="text" id="joueur2Token" name="joueur2Token" placeholder="Token" required class="w-full mb-2 border-2 border-black rounded-2xl p-3" />
+                        </label>
+                    </div>
+                </div>
+                <div class="flex justify-center">
+                    <button type="submit" class="mt-4 px-4 py-2 bg-red-700 text-white text-2xl rounded-xl hover:bg-red-800 uppercase">Jouer !</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    <div id="root"></div>
 </body>
 </html>

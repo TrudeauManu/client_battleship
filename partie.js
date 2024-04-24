@@ -11,20 +11,24 @@ export default class Partie {
         let joueurActuel = premierJoueur;
         let autreJoueur = deuxiemeJoueur;
 
-        while (true) {
+        const playTurn = async () => {
             const coordonnee = await joueurActuel.shoot();
             const resultat = autreJoueur.checkHit(coordonnee);
             await joueurActuel.updateMissile(coordonnee, resultat);
+
+            console.log(joueurActuel.getNom() + " a tirer la: " + coordonnee + " et cela a " + resultat)
 
             if (resultat !== 0 && autreJoueur.aPerdu()) {
                 return joueurActuel.getNom();
             }
 
-            console.log(joueurActuel.getNom() + " a tirer la: " + coordonnee + " et cela a " + resultat)
-
             const temp = joueurActuel;
             joueurActuel = autreJoueur;
             autreJoueur = temp;
-        }
+
+            setTimeout(playTurn, 250);
+        };
+
+        await playTurn();
     }
 }

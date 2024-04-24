@@ -60,12 +60,10 @@ export default class Joueur {
                             return 3;
                         case "destroyer":
                             return 4;
-                        case "sous-marine":
+                        case "sous-marin":
                             return 5;
                         case "patrouilleur":
                             return 6;
-                        default:
-                            return -1;
                     }
                 }
                 return 1;
@@ -76,7 +74,7 @@ export default class Joueur {
 
     aPerdu() {
         for (let bateau in this.bateaux) {
-            if (this.bateaux[bateau].length === 0) {
+            if (this.bateaux[bateau].length !== 0) {
                 return false;
             }
         }

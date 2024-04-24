@@ -1,6 +1,12 @@
 import './styles.css';
 import Joueur from './joueur.js';
 import Partie from "./partie.js";
+import 'tailwindcss/tailwind.css';
+import grid from "./grid/pixelArtGrid";
+import colorPicker from "./grid/colorPicker";
+
+const root = document.getElementById('root');
+root.appendChild(grid());
 
 const form = document.getElementById('joueursForm');
 
@@ -23,8 +29,12 @@ form.addEventListener('submit', function(event) {
       joueur2.createPartie(joueur1Nom),
     ]).then(() => {
         const partie = new Partie(joueur1, joueur2);
-        partie.JouerLaPartie().then(r => console.log("Le vainqueur est: " + r));
+        partie.JouerLaPartie().then(r => {
+            console.log("Le vainqueur est: " + r)
+        });
     })
 });
+
+
 
 
