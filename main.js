@@ -1,7 +1,6 @@
 import './styles.css';
 import Joueur from './joueur.js';
 import Partie from "./partie.js";
-import 'tailwindcss'
 import Grid from './composants/grid.js';
 
 const form = document.getElementById('joueursForm');
