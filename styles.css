@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Style des bloc contenant les couleurs que l'utilisateur peut choisir */
+.pickableColor{
+    display: block;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #ccc;
+    margin: 10px;
+}
+
+/* Style de chaque pixel du canvas */
+.pixel{
+    height: 50px;
+    width: 50px;
+}
+
+/* Style du canvas contenant les pixels à colorier */
+.canvas{
+    border: 1px solid #333;
+    height: min-content;
+    width: min-content;
+    margin: 5px;
+}
+
+/* Ajoute la bordure noir à la couleur sélectionnée */
+.selected{
+    border: 5px solid black;
+}
