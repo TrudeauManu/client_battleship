@@ -9,7 +9,8 @@ function Grid() {
     if (col === 0 ) {
       Grid.appendChild(NumberRow());
     } else {
-      Grid.appendChild(GameRow(col));
+      let gameRow = GameRow(col)
+      Grid.appendChild(gameRow);
     }
   }
 
