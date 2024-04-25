@@ -1,4 +1,5 @@
 import Grid from "./grid.js";
+import NameTag from "./nameTag";
 
 export default class GameBoard {
     constructor(joueur) {
@@ -7,7 +8,46 @@ export default class GameBoard {
     }
 
     createGrid() {
-        return new Grid(String(this.nom));
+        let board = document.createElement("div");
+        board.classList.add("flex", "flex-col");
+        board.id = "board"
+
+        board.appendChild(new NameTag(String(this.nom)));
+
+        let divGrid = document.createElement("div");
+        divGrid.classList.add("flex", "flex-row");
+        divGrid.id = "test"
+
+        let divImage = document.createElement("div");
+        divImage.classList.add("flex", "flex-col", "justify-center");
+
+        let porteAvions = document.createElement("img");
+        porteAvions.src = "../images/porte-avions.png";
+
+        let cuirasse = document.createElement("img");
+        cuirasse.src = "../images/cuirasse.png";
+
+        let sousMarin = document.createElement("img");
+        sousMarin.src = "../images/sous-marin.png";
+
+        let destroyer = document.createElement("img");
+        destroyer.src = "../images/destroyer.png";
+
+        let patrouilleur = document.createElement("img");
+        patrouilleur.src = "../images/patrouilleur.png";
+
+        divImage.appendChild(porteAvions);
+        divImage.appendChild(cuirasse);
+        divImage.appendChild(sousMarin);
+        divImage.appendChild(destroyer);
+        divImage.appendChild(patrouilleur);
+
+        divGrid.appendChild(divImage);
+        divGrid.appendChild(new Grid(String(this.nom)));
+
+        board.appendChild(divGrid);
+
+        return board;
     }
 
     updateGrid(coordonne, hit) {
