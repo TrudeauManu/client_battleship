@@ -1,7 +1,11 @@
+import GameBoard from "./composants/gameBoard.js";
+
 export default class Partie {
-    constructor(joueur1, joueur2) {
+    constructor(joueur1, joueur2, gameBoardJ1, gameBoardJ2) {
         this.joueur1 = joueur1;
         this.joueur2 = joueur2;
+        this.gameBoardJ1 = gameBoardJ1;
+        this.gameBoardJ2 = gameBoardJ2;
     }
 
     async JouerLaPartie() {
@@ -15,6 +19,14 @@ export default class Partie {
             const coordonnee = await joueurActuel.shoot();
             const resultat = autreJoueur.checkHit(coordonnee);
             await joueurActuel.updateMissile(coordonnee, resultat);
+
+            let block = document.getElementById(coordonnee);
+
+            if (joueurActuel === premierJoueur) {
+                this.gameBoardJ1.updateGrid(coordonnee, resultat)
+            } else {
+                this.gameBoardJ2.updateGrid(coordonnee, resultat)
+            }
 
             console.log(joueurActuel.getNom() + " a tirer la: " + coordonnee + " et cela a " + resultat)
 

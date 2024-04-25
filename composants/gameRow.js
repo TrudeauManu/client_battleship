@@ -1,4 +1,4 @@
-function GameRow(nbRow) {
+function GameRow(nbRow, id) {
   const GameRow = document.createElement('div')
   GameRow.className = 'flex '
 
@@ -12,7 +12,7 @@ function GameRow(nbRow) {
       carre.className += " font-bold"
       carre.appendChild(text)
     } else {
-      carre.id = String.fromCharCode(64 + nbRow) + "-" + row
+      carre.id = id + "-" +String.fromCharCode(64 + nbRow) + "-" + row
     }
 
     GameRow.appendChild(carre);
