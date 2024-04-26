@@ -22,19 +22,19 @@ export default class GameBoard {
         divImage.classList.add("flex", "flex-col", "justify-center");
 
         let porteAvions = document.createElement("img");
-        porteAvions.src = "../images/porte-avions.png";
+        porteAvions.src = "../images/porte-avions-v2.webp";
 
         let cuirasse = document.createElement("img");
-        cuirasse.src = "../images/cuirasse.png";
+        cuirasse.src = "../images/cuirasse-v2.png";
 
         let sousMarin = document.createElement("img");
-        sousMarin.src = "../images/sous-marin.png";
+        sousMarin.src = "../images/sous-marin-v2.png";
 
         let destroyer = document.createElement("img");
-        destroyer.src = "../images/destroyer.png";
+        destroyer.src = "../images/destroyer-v2.png";
 
         let patrouilleur = document.createElement("img");
-        patrouilleur.src = "../images/patrouilleur.png";
+        patrouilleur.src = "../images/patrouilleur-v2.webp";
 
         divImage.appendChild(porteAvions);
         divImage.appendChild(cuirasse);
