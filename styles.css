@@ -19,7 +19,7 @@
 .recycler-view {
     overflow-y: scroll;
     height: 450px;
-    min-width: 255px;
+    min-width: 270px;
     scrollbar-width: none;
 }
 
