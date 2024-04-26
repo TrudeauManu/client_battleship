@@ -31,3 +31,8 @@
 .log {
     padding: 10px;
 }
+
+/* Bateaux */
+.bateaux {
+    min-width: 200px;
+}

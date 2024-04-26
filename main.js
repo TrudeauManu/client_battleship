@@ -1,5 +1,6 @@
 import './styles.css';
 import BestOf3 from "./Partie/bestOf3";
+import {finGame} from "./composants/finGame";
 
 const form = document.getElementById('joueursForm');
 const main = document.getElementById('main');
@@ -18,12 +19,8 @@ form.addEventListener('submit', function(event) {
     form.remove();
 
     const bestOf3 = new BestOf3(joueur1Nom, joueur1Token, joueur1Url, joueur2Nom, joueur2Token, joueur2Url);
-    bestOf3.createBestOf3()
-        .then(() => {
-            new Promise(resolve => setTimeout(resolve, 1000))
-            .then(() => {
-                main.innerHTML = '';
-                main.appendChild(form);
-            });
-        });
+    bestOf3.createBestOf3().then((gagnant) => {
+        main.innerHTML = '';
+        main.appendChild(finGame(gagnant, form));
+    });
 });

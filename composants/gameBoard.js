@@ -23,18 +23,23 @@ export default class GameBoard {
 
         let porteAvions = document.createElement("img");
         porteAvions.src = "../images/porte-avions-v2.webp";
+        porteAvions.className = "bateaux";
 
         let cuirasse = document.createElement("img");
         cuirasse.src = "../images/cuirasse-v2.png";
+        cuirasse.className = "bateaux";
 
         let sousMarin = document.createElement("img");
         sousMarin.src = "../images/sous-marin-v2.png";
+        sousMarin.className = "bateaux";
 
         let destroyer = document.createElement("img");
         destroyer.src = "../images/destroyer-v2.png";
+        destroyer.className = "bateaux";
 
         let patrouilleur = document.createElement("img");
         patrouilleur.src = "../images/patrouilleur-v2.webp";
+        patrouilleur.className = "bateaux";
 
         divImage.appendChild(porteAvions);
         divImage.appendChild(cuirasse);

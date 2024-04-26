@@ -47,22 +47,28 @@ export default class BestOf3 {
             }
 
             if (joueur1Victoires === 2 || joueur2Victoires === 2) break;
-            await new Promise(resolve => setTimeout(resolve, 2000));
+            await new Promise(resolve => setTimeout(resolve, 20));
         }
 
         let vainqueur;
+        let scoreVainqueur;
+        let perdant;
+        let perdantScore;
         if (joueur1Victoires > joueur2Victoires) {
             vainqueur = this.joueur1Nom;
+            scoreVainqueur = joueur1Victoires;
+            perdant = this.joueur2Nom;
+            perdantScore = joueur2Victoires;
         } else if (joueur2Victoires > joueur1Victoires) {
             vainqueur = this.joueur2Nom;
+            scoreVainqueur = joueur2Victoires;
+            perdant = this.joueur1Nom;
+            perdantScore = joueur1Victoires;
         }
 
-        const main = document.getElementById('main');
-        const resultatFinal = document.createElement("div");
-        resultatFinal.textContent = "Le vainqueur du 2 de 3 est : " + vainqueur;
-        resultatFinal.className = "font-bold text-3xl";
-        main.innerHTML = '';
-        main.appendChild(resultatFinal);
-        return vainqueur;
+        return {
+            vainqueur: { nom: vainqueur, score: scoreVainqueur},
+            perdant : { nom: perdant, score: perdantScore }
+        };
     };
 }
