@@ -1,13 +1,24 @@
 
-function NameTag(nom) {
+function NameTag(joueur1, joueur2) {
     let nameTag = document.createElement("div");
-    let nameTagInnerDiv = document.createElement("div");
+    let nomJoueur1 = document.createElement("div");
+    let nomJoueur2 = document.createElement("div");
+    let score = document.createElement("div");
 
-    nameTag.appendChild(nameTagInnerDiv);
-    nameTag.classList.add("flex", "justify-center", "text-2xl", "my-2", "uppercase", "items-center", "font-bold");
+    nameTag.appendChild(nomJoueur1);
+    nameTag.appendChild(score);
+    nameTag.appendChild(nomJoueur2);
 
-    nameTagInnerDiv.classList.add("Text-2xl", "text-white");
-    nameTagInnerDiv.innerHTML = String(nom);
+    nameTag.classList.add("flex", "justify-around", "text-2xl", "my-2", "uppercase", "items-center", "font-bold");
+    score.classList.add('text-center', "Text-2xl", "text-white", 'w-1/3');
+    nomJoueur1.classList.add('text-center', "Text-2xl", "text-white", 'w-1/3');
+    nomJoueur2.classList.add('text-center', "Text-2xl", "text-white", 'w-1/3');
+
+    score.id = 'score'
+
+    nomJoueur1.innerHTML = String(joueur1);
+    nomJoueur2.innerHTML = String(joueur2);
+    score.innerHTML = '0 - 0';
 
     return nameTag;
 }

@@ -1,65 +1,83 @@
 import Grid from "./grid.js";
 import NameTag from "./nameTag";
+import Bateaux from "./bateaux";
+import RecyclerView from "../Historique/RecyclerView";
+import BoutonQuitter from "./boutonQuitter";
 
 export default class GameBoard {
-    constructor(joueur) {
-        this.nom = joueur;
-        console.log(joueur)
+    constructor(joueur1, joueur2) {
+        this.nomJoueur1 = joueur1;
+        this.nomJoueur2 = joueur2;
+        this.recyclerView = new RecyclerView();
     }
 
-    createGrid() {
-        let board = document.createElement("div");
-        board.classList.add("flex", "flex-col", "shadow-gray-900", "shadow-2xl", "rounded-2xl", "p-3");
-        board.id = "board"
+    createGameBoard() {
+        let gameBoard = document.createElement("div");
+        gameBoard.id = "gameBoard";
+        gameBoard.classList.add("flex", "flex-col");
 
-        board.appendChild(new NameTag(String(this.nom)));
+        gameBoard.appendChild(new NameTag(String(this.nomJoueur1), String(this.nomJoueur2)));
 
-        let divGrid = document.createElement("div");
-        divGrid.classList.add("flex", "flex-row");
-        divGrid.id = "test"
+        let gridDiv = document.createElement("div");
+        gridDiv.id = "gridDiv";
+        gridDiv.classList.add("flex", "flex-row", 'justify-around')
+        gameBoard.appendChild(gridDiv);
 
-        let divImage = document.createElement("div");
-        divImage.classList.add("flex", "flex-col", "justify-center");
+        let gridJoueur1 = document.createElement("div");
+        let gridJoueur2 = document.createElement("div");
+        gridJoueur1.classList.add('flex', 'flex-col', 'max-w-600', 'justify-items-center', 'items-center');
+        gridJoueur2.classList.add('flex', 'flex-col', 'max-w-600', 'justify-items-center', 'items-center');
 
-        let porteAvions = document.createElement("img");
-        porteAvions.src = "../images/porte-avions-v2.webp";
-        porteAvions.className = "bateaux";
+        gridJoueur1.appendChild(new Grid(String(this.nomJoueur1)));
+        gridJoueur1.appendChild(new Bateaux(String(this.nomJoueur1)))
+        gridJoueur2.appendChild(new Grid(String(this.nomJoueur2)));
+        gridJoueur2.appendChild(new Bateaux(String(this.nomJoueur2)))
 
-        let cuirasse = document.createElement("img");
-        cuirasse.src = "../images/cuirasse-v2.png";
-        cuirasse.className = "bateaux";
+        const recyclerView = document.createElement("div");
+        recyclerView.className = "recycler-view shadow-2xl shadow-gray-900 bg-transparent text-white font-bold";
+        recyclerView.id = "recycler-view";
 
-        let sousMarin = document.createElement("img");
-        sousMarin.src = "../images/sous-marin-v2.png";
-        sousMarin.className = "bateaux";
+        let middleBox = document.createElement("div");
+        middleBox.id = "middleBox";
+        middleBox.classList.add("flex", "flex-col");
+        middleBox.appendChild(recyclerView);
+        middleBox.appendChild(new BoutonQuitter())
 
-        let destroyer = document.createElement("img");
-        destroyer.src = "../images/destroyer-v2.png";
-        destroyer.className = "bateaux";
 
-        let patrouilleur = document.createElement("img");
-        patrouilleur.src = "../images/patrouilleur-v2.webp";
-        patrouilleur.className = "bateaux";
+        gridDiv.appendChild(gridJoueur1);
+        gridDiv.appendChild(middleBox);
+        gridDiv.appendChild(gridJoueur2);
 
-        divImage.appendChild(porteAvions);
-        divImage.appendChild(cuirasse);
-        divImage.appendChild(sousMarin);
-        divImage.appendChild(destroyer);
-        divImage.appendChild(patrouilleur);
-
-        divGrid.appendChild(divImage);
-        divGrid.appendChild(new Grid(String(this.nom)));
-
-        board.appendChild(divGrid);
-
-        return board;
+        return gameBoard
     }
 
-    updateGrid(coordonne, hit) {
+
+    updateGrid(joueur, coordonne, hit) {
         if (hit === 0) {
-            document.getElementById(this.nom + "-" + coordonne).classList.add("bg-blue-400");
+            document.getElementById(String(joueur) + "-" + coordonne).classList.add("bg-blue-400");
         } else {
-            document.getElementById(this.nom + "-" + coordonne).classList.add("bg-red-400");
+            document.getElementById(String(joueur) + "-" + coordonne).classList.add("bg-red-400");
+        }
+    }
+
+    updateBateaux(joueur, resultat) {
+        console.log(resultat)
+        switch (resultat) {
+            case 2:
+                document.getElementById( String(joueur) + "-porte-avions").src = "../images/porte-avions-v2-couler.png"
+                break;
+            case 3:
+                document.getElementById(String(joueur) + "-cuirasse").src = "../images/cuirasse-v2-couler.png"
+                break;
+            case 4:
+                document.getElementById(String(joueur) + "-destroyer").src = "../images/destroyer-v2-couler.png"
+                break;
+            case 5:
+                document.getElementById(String(joueur) + "-sous-marin").src = "../images/sous-marin-v2-couler.png"
+                break;
+            default:
+                document.getElementById(String(joueur) + "-patrouilleur").src = "../images/patrouilleur-v2-couler.png"
+                break;
         }
     }
 }

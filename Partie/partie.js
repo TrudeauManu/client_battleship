@@ -1,11 +1,10 @@
 import RecyclerView from "../Historique/RecyclerView";
 
 export default class Partie {
-    constructor(joueur1, joueur2, gameBoardJ1, gameBoardJ2) {
+    constructor(joueur1, joueur2, gameBoard) {
         this.joueur1 = joueur1;
         this.joueur2 = joueur2;
-        this.gameBoardJ1 = gameBoardJ1;
-        this.gameBoardJ2 = gameBoardJ2;
+        this.gameBoard = gameBoard;
         this.historique = new RecyclerView();
     }
 
@@ -22,9 +21,16 @@ export default class Partie {
             await joueurActuel.updateMissile(coordonnee, resultat);
 
             if (joueurActuel === premierJoueur) {
-                this.gameBoardJ1.updateGrid(coordonnee, resultat)
+                this.gameBoard.updateGrid(premierJoueur.nom, coordonnee, resultat)
+                if (resultat > 1) {
+                    this.gameBoard.updateBateaux(premierJoueur.nom, resultat)
+                }
+
             } else {
-                this.gameBoardJ2.updateGrid(coordonnee, resultat)
+                this.gameBoard.updateGrid(deuxiemeJoueur.nom, coordonnee, resultat)
+                if (resultat > 1) {
+                    this.gameBoard.updateBateaux(deuxiemeJoueur.nom, resultat)
+                }
             }
 
             let resultatTexte;
