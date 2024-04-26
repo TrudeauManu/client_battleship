@@ -9,7 +9,7 @@ export default class GameBoard {
 
     createGrid() {
         let board = document.createElement("div");
-        board.classList.add("flex", "flex-col");
+        board.classList.add("flex", "flex-col", "shadow-gray-900", "shadow-2xl", "rounded-2xl", "p-3");
         board.id = "board"
 
         board.appendChild(new NameTag(String(this.nom)));
@@ -52,9 +52,9 @@ export default class GameBoard {
 
     updateGrid(coordonne, hit) {
         if (hit === 0) {
-            document.getElementById(this.nom + "-" + coordonne).className += " bg-indigo-300";
+            document.getElementById(this.nom + "-" + coordonne).classList.add("bg-blue-400");
         } else {
-            document.getElementById(this.nom + "-" + coordonne).className += " bg-red-300";
+            document.getElementById(this.nom + "-" + coordonne).classList.add("bg-red-400");
         }
     }
 }

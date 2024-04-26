@@ -8,44 +8,49 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <main class="bg-cyan-800 min-h-screen flex flex-col flex-1">
-        <div class="flex md:flex-row justify-center items-center mt-5" id="main">
-            <form class="bg-stone-500 rounded-2xl w-full md:w-1/2 p-4" id="joueursForm">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <h1 class="text-2xl font-bold text-center pb-3 uppercase">Joueur 1</h1>
-                        <label for="joueur1Nom">
-                            <input type="text" id="joueur1Nom" name="joueur1Nom" placeholder="Nom" required class="w-full mb-2 border-2 border-black rounded-2xl p-3" />
-                        </label>
+    <div class="min-h-screen flex flex-col justify-center flex-1">
+        <main class="bg-cyan-800 flex flex-col justify-center flex-1 main">
+            <div class="flex md:flex-row justify-center items-center" id="main">
+                <form class="bg-transparent rounded-2xl w-full md:w-1/2 p-4 text-white shadow-gray-900 shadow-2xl" id="joueursForm">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <h1 class="text-2xl font-bold text-center pb-3 uppercase">Joueur 1</h1>
+                            <label for="joueur1Nom">
+                                <input type="text" id="joueur1Nom" name="joueur1Nom" placeholder="Nom" required class="text-black w-full mb-2 border-2 border-cyan-900 rounded-2xl p-3" />
+                            </label>
 
-                        <label for="joueur1Url">
-                            <input type="text" id="joueur1Url" name="joueur1Url" placeholder="Url" required class="w-full mb-2 border-2 border-black rounded-2xl p-3" />
-                        </label>
+                            <label for="joueur1Url">
+                                <input type="text" id="joueur1Url" name="joueur1Url" placeholder="Url" required class="text-black w-full mb-2 border-2 border-cyan-900 rounded-2xl p-3" />
+                            </label>
 
-                        <label for="joueur1Token">
-                            <input type="text" id="joueur1Token" name="joueur1Token" placeholder="Token" required class="w-full mb-2 border-2 border-black rounded-2xl p-3" />
-                        </label>
+                            <label for="joueur1Token">
+                                <input type="text" id="joueur1Token" name="joueur1Token" placeholder="Token" required class="text-black w-full mb-2 border-2 border-cyan-900 rounded-2xl p-3" />
+                            </label>
+                        </div>
+                        <div>
+                            <h1 class="text-2xl font-bold text-center pb-3 uppercase">Joueur 2</h1>
+                            <label for="joueur2Nom">
+                                <input type="text" id="joueur2Nom" name="joueur2Nom" placeholder="Nom" required class="text-black w-full mb-2 border-2 border-cyan-900 rounded-2xl p-3" />
+                            </label>
+
+                            <label for="joueur2Url">
+                                <input type="text" id="joueur2Url" name="joueur2Url" placeholder="Url" required class="text-black w-full mb-2 border-2 border-cyan-900 rounded-2xl p-3" />
+                            </label>
+
+                            <label for="joueur2Token">
+                                <input type="text" id="joueur2Token" name="joueur2Token" placeholder="Token" required class="text-black w-full mb-2 border-2 border-cyan-900 rounded-2xl p-3" />
+                            </label>
+                        </div>
                     </div>
-                    <div>
-                        <h1 class="text-2xl font-bold text-center pb-3 uppercase">Joueur 2</h1>
-                        <label for="joueur2Nom">
-                            <input type="text" id="joueur2Nom" name="joueur2Nom" placeholder="Nom" required class="w-full mb-2 border-2 border-black rounded-2xl p-3" />
-                        </label>
-
-                        <label for="joueur2Url">
-                            <input type="text" id="joueur2Url" name="joueur2Url" placeholder="Url" required class="w-full mb-2 border-2 border-black rounded-2xl p-3" />
-                        </label>
-
-                        <label for="joueur2Token">
-                            <input type="text" id="joueur2Token" name="joueur2Token" placeholder="Token" required class="w-full mb-2 border-2 border-black rounded-2xl p-3" />
-                        </label>
+                    <div class="flex justify-center">
+                        <button type="submit" class="mt-4 px-4 py-2 bg-orange-600 text-white text-xl font-bold rounded-xl hover:bg-red-700 uppercase">Jouer !</button>
                     </div>
-                </div>
-                <div class="flex justify-center">
-                    <button type="submit" class="mt-4 px-4 py-2 bg-red-700 text-white text-2xl rounded-xl hover:bg-red-800 uppercase">Jouer !</button>
-                </div>
-            </form>
-        </div>
-    </main>
+                </form>
+            </div>
+        </main>
+        <footer class="flex justify-center text-center p-3 text-lg font-bold bg-cyan-900 text-white uppercase">
+            Emmanuel Trudeau & Marc-Alexandre Bouchard - 2024
+        </footer>
+    </div>
 </body>
 </html>

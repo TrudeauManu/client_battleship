@@ -1,19 +1,8 @@
 import './styles.css';
-import Joueur from './joueur.js';
-import Partie from "./partie.js";
-import Grid from './composants/grid.js';
-import GameBoard from './composants/gameBoard.js'
+import BestOf3 from "./Partie/bestOf3";
 
 const form = document.getElementById('joueursForm');
 const main = document.getElementById('main');
-
-form.remove();
-
-let GBJoueur1 = new GameBoard("Marc")
-let GBJoueur2 = new GameBoard("Manu")
-
-main.appendChild(GBJoueur1.createGrid())
-main.appendChild(GBJoueur2.createGrid())
 
 form.addEventListener('submit', function(event) {
     event.preventDefault();
@@ -26,24 +15,15 @@ form.addEventListener('submit', function(event) {
     const joueur2Url = document.getElementById('joueur2Url').value;
     const joueur2Token = document.getElementById('joueur2Token').value;
 
+    form.remove();
 
-
-
-
-    const joueur1 = new Joueur(joueur1Nom, joueur1Token, joueur1Url);
-    const joueur2 = new Joueur(joueur2Nom, joueur2Token, joueur2Url);
-
-    Promise.all([
-      joueur1.createPartie(joueur2Nom),
-      joueur2.createPartie(joueur1Nom),
-    ]).then(() => {
-        const partie = new Partie(joueur1, joueur2, GBJoueur1, GBJoueur2);
-        partie.JouerLaPartie().then(r => {
-            console.log("Le vainqueur est: " + r)
+    const bestOf3 = new BestOf3(joueur1Nom, joueur1Token, joueur1Url, joueur2Nom, joueur2Token, joueur2Url);
+    bestOf3.createBestOf3()
+        .then(() => {
+            new Promise(resolve => setTimeout(resolve, 1000))
+            .then(() => {
+                main.innerHTML = '';
+                main.appendChild(form);
+            });
         });
-    })
 });
-
-
-
-

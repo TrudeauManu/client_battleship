@@ -4,7 +4,7 @@ function NameTag(nom) {
     let nameTagInnerDiv = document.createElement("div");
 
     nameTag.appendChild(nameTagInnerDiv);
-    nameTag.classList.add("flex", "justify-center", "text-2xl", "my-2");
+    nameTag.classList.add("flex", "justify-center", "text-2xl", "my-2", "uppercase", "items-center", "font-bold");
 
     nameTagInnerDiv.classList.add("Text-2xl", "text-white");
     nameTagInnerDiv.innerHTML = String(nom);

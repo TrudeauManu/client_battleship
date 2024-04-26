@@ -1,4 +1,4 @@
-import GameBoard from "./composants/gameBoard.js";
+import RecyclerView from "../Historique/RecyclerView";
 
 export default class Partie {
     constructor(joueur1, joueur2, gameBoardJ1, gameBoardJ2) {
@@ -6,6 +6,7 @@ export default class Partie {
         this.joueur2 = joueur2;
         this.gameBoardJ1 = gameBoardJ1;
         this.gameBoardJ2 = gameBoardJ2;
+        this.historique = new RecyclerView();
     }
 
     async JouerLaPartie() {
@@ -20,15 +21,24 @@ export default class Partie {
             const resultat = autreJoueur.checkHit(coordonnee);
             await joueurActuel.updateMissile(coordonnee, resultat);
 
-            let block = document.getElementById(coordonnee);
-
             if (joueurActuel === premierJoueur) {
                 this.gameBoardJ1.updateGrid(coordonnee, resultat)
             } else {
                 this.gameBoardJ2.updateGrid(coordonnee, resultat)
             }
 
-            console.log(joueurActuel.getNom() + " a tirer la: " + coordonnee + " et cela a " + resultat)
+            let resultatTexte;
+            switch (resultat) {
+                case 0: resultatTexte = 'À l\'eau'; break;
+                case 1: resultatTexte = 'Touché'; break;
+                case 2: resultatTexte = 'Porte-avions coulé'; break;
+                case 3: resultatTexte = 'Cuirassé coulé'; break;
+                case 4: resultatTexte = 'Destroyer coulé'; break;
+                case 5: resultatTexte = 'Sous-marin coulé'; break;
+                case 6: resultatTexte = 'Patrouilleur coulé'; break;
+            }
+
+            this.historique.updateRecyclerView("[" + joueurActuel.getNom()+ "] " + coordonnee + ": " + resultatTexte);
 
             if (resultat !== 0 && autreJoueur.aPerdu()) {
                 return joueurActuel.getNom();
@@ -38,9 +48,10 @@ export default class Partie {
             joueurActuel = autreJoueur;
             autreJoueur = temp;
 
-            setTimeout(playTurn, 250);
+            await new Promise(resolve => setTimeout(resolve, 350));
+            return playTurn();
         };
 
-        await playTurn();
+        return await playTurn();
     }
 }
