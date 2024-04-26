@@ -5,9 +5,11 @@ import RecyclerView from "../Historique/RecyclerView";
 import BoutonQuitter from "./boutonQuitter";
 
 export default class GameBoard {
-    constructor(joueur1, joueur2) {
+    constructor(joueur1, joueur2, scoreJoueur1, scoreJoueur2) {
         this.nomJoueur1 = joueur1;
         this.nomJoueur2 = joueur2;
+        this.scoreJoueur1 = scoreJoueur1;
+        this.scoreJoueur2 = scoreJoueur2;
         this.recyclerView = new RecyclerView();
     }
 
@@ -16,7 +18,7 @@ export default class GameBoard {
         gameBoard.id = "gameBoard";
         gameBoard.classList.add("flex", "flex-col");
 
-        gameBoard.appendChild(new NameTag(String(this.nomJoueur1), String(this.nomJoueur2)));
+        gameBoard.appendChild(new NameTag(String(this.nomJoueur1), String(this.nomJoueur2), this.scoreJoueur1, this.scoreJoueur2));
 
         let gridDiv = document.createElement("div");
         gridDiv.id = "gridDiv";

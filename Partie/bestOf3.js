@@ -24,7 +24,7 @@ export default class BestOf3 {
             await joueur1.createPartie(this.joueur2Nom);
             await joueur2.createPartie(this.joueur1Nom);
 
-            let gameBoard = new GameBoard(this.joueur1Nom, this.joueur2Nom);
+            let gameBoard = new GameBoard(this.joueur1Nom, this.joueur2Nom, joueur1Victoires, joueur2Victoires);
 
             const main = document.getElementById('main');
             main.innerHTML = '';
@@ -44,19 +44,16 @@ export default class BestOf3 {
             await new Promise(resolve => setTimeout(resolve, 2000));
         }
 
-        let vainqueur;
         if (joueur1Victoires > joueur2Victoires) {
-            vainqueur = this.joueur1Nom;
+            return {
+                vainqueur: { nom: this.joueur1Nom, score: joueur1Victoires },
+                perdant: { nom: this.joueur2Nom, score: joueur2Victoires },
+            };
         } else if (joueur2Victoires > joueur1Victoires) {
-            vainqueur = this.joueur2Nom;
+            return {
+                vainqueur: { nom: this.joueur2Nom, score: joueur2Victoires },
+                perdant: { nom: this.joueur1Nom, score: joueur1Victoires },
+            };
         }
-
-        const main = document.getElementById('main');
-        const resultatFinal = document.createElement("div");
-        resultatFinal.textContent = "Le vainqueur du 2 de 3 est : " + vainqueur;
-        resultatFinal.className = "font-bold text-3xl";
-        main.innerHTML = '';
-        main.appendChild(resultatFinal);
-        return vainqueur;
     };
 }

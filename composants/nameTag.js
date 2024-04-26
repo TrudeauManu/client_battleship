@@ -1,5 +1,5 @@
 
-function NameTag(joueur1, joueur2) {
+function NameTag(joueur1, joueur2, scoreJoueur1, scoreJoueur2) {
     let nameTag = document.createElement("div");
     let nomJoueur1 = document.createElement("div");
     let nomJoueur2 = document.createElement("div");
@@ -18,7 +18,7 @@ function NameTag(joueur1, joueur2) {
 
     nomJoueur1.innerHTML = String(joueur1);
     nomJoueur2.innerHTML = String(joueur2);
-    score.innerHTML = '0 - 0';
+    score.innerHTML = scoreJoueur1 + " - " + scoreJoueur2;
 
     return nameTag;
 }
