@@ -48,7 +48,7 @@ export default class Partie {
             joueurActuel = autreJoueur;
             autreJoueur = temp;
 
-            await new Promise(resolve => setTimeout(resolve, 50));
+            await new Promise(resolve => setTimeout(resolve, 350));
             return playTurn();
         };
 

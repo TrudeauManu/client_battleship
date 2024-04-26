@@ -36,6 +36,16 @@ export default class BestOf3 {
             recyclerView.id = "recycler-view";
             main.appendChild(recyclerView);
 
+            const buttonAnuller = document.createElement("button");
+            buttonAnuller.className = "rounded-2xl px-4 py-2 font-bold text-white bg-red-600 max-w-24 mx-auto mt-4";
+            buttonAnuller.addEventListener("click", (e) => {
+                location.reload();
+            });
+            buttonAnuller.textContent = "Quitter";
+
+            const body = document.getElementById("body");
+            body.appendChild(buttonAnuller);
+
             const partie = new Partie(joueur1, joueur2, GBJoueur1, GBJoueur2);
 
             const vainqueur = await partie.JouerLaPartie();
@@ -46,8 +56,11 @@ export default class BestOf3 {
                 joueur2Victoires++;
             }
 
+            await joueur1.delete();
+            await joueur2.delete();
+
             if (joueur1Victoires === 2 || joueur2Victoires === 2) break;
-            await new Promise(resolve => setTimeout(resolve, 20));
+            await new Promise(resolve => setTimeout(resolve, 2000));
         }
 
         let vainqueur;

@@ -1,4 +1,5 @@
 import axios from "axios";
+import config from "tailwindcss/defaultConfig";
 
 export default class Joueur {
     constructor(nom, token, url) {
@@ -83,5 +84,9 @@ export default class Joueur {
 
     getNom() {
         return this.nom;
+    }
+
+    async delete() {
+        await this.instance.delete(`parties/${this.partieId}`);
     }
 }
