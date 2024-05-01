@@ -1,3 +1,6 @@
+/**
+ * Fonction qui sauvegarde les valeurs du formulaire en localStorage.
+ */
 export function sauvegarderValeursFormulaire() {
     localStorage.setItem('joueur1Nom', document.getElementById('joueur1Nom').value);
     localStorage.setItem('joueur1Url', document.getElementById('joueur1Url').value);

@@ -1,6 +1,8 @@
 import axios from "axios";
-import config from "tailwindcss/defaultConfig";
 
+/**
+ * Classe de Joueur.
+ */
 export default class Joueur {
     constructor(nom, token, url) {
         this.nom = nom;
@@ -10,6 +12,9 @@ export default class Joueur {
         this.createInstance();
     }
 
+    /**
+     * Fonction pour créer l'instance axios.
+     */
     createInstance() {
         this.instance = axios.create({
             baseURL: this.url,
@@ -19,7 +24,13 @@ export default class Joueur {
         });
     }
 
-    async createPartie(adversaire) {
+    /**
+     * Fonction qui appelle la méthode POST /battleship-ia/parties/ pour recevoir les bateaux et créer une nouvelle partie.
+     *
+     * @param adversaire Le nom de l'adversaire.
+     * @returns {Promise<void>} La promesse de la création de la partie.
+     */
+    async getShips(adversaire) {
         const config = {
             params: {
                 adversaire: adversaire,
@@ -31,11 +42,23 @@ export default class Joueur {
         this.bateaux = response.data.data.bateaux;
     }
 
+    /**
+     * Fonmction qui tire un missile en appellant la méthode POST /parties/{partieId}/missiles de l'api.
+     *
+     * @returns {Promise<*>} Le missile créer.
+     */
     async shoot() {
         const response = await this.instance.post(`parties/${this.partieId}/missiles`);
         return response.data.data.coordonnee;
     }
 
+    /**
+     * Fonction qui update le résultat d'un missile lancer en appelant la méthode PUT /parties/{partieId}/missiles/{coordonnees}.
+     *
+     * @param coordonnee Les coordonnees du missiles à updater.
+     * @param resultat Le résultat du missile.
+     * @returns {Promise<*>} Le missile modifié.
+     */
     async updateMissile(coordonnee, resultat) {
         const config = {
             params: {
@@ -47,6 +70,12 @@ export default class Joueur {
         return response.data.data;
     }
 
+    /**
+     * Méthode qui vérifie les hits de l'adversaire sur les bateaux.
+     *
+     * @param coordonnee Les coordonnees du missile.
+     * @returns {number} Le resultat du missile.
+     */
     checkHit(coordonnee) {
         for (let bateau in this.bateaux) {
             let index = this.bateaux[bateau].indexOf(coordonnee);
@@ -73,6 +102,11 @@ export default class Joueur {
         return 0;
     }
 
+    /**
+     * Fonction qui vérifie si le joueur a perdu.
+     *
+     * @returns {boolean} True si il a perdu et False si il n'a pas perdu.
+     */
     aPerdu() {
         for (let bateau in this.bateaux) {
             if (this.bateaux[bateau].length !== 0) {
@@ -82,10 +116,20 @@ export default class Joueur {
         return true;
     }
 
+    /**
+     * Fonction qui retourne le nom du joueur.
+     *
+     * @returns {String}
+     */
     getNom() {
         return this.nom;
     }
 
+    /**
+     * Fonction qui delete la partie.
+     *
+     * @returns {Promise<void>}
+     */
     async delete() {
         await this.instance.delete(`parties/${this.partieId}`);
     }

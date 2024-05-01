@@ -1,3 +1,10 @@
+/**
+ * Fonction qui crée le message de fin de partie et le bouton pour rejouer.
+ *
+ * @param resultat Le résultat de la partie.
+ * @param form Le formulaire.
+ * @returns {HTMLDivElement} La div contenant le message et le bouton rejouer.
+ */
 export function finGame(resultat, form) {
     const main = document.getElementById("main");
 

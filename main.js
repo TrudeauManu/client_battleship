@@ -1,20 +1,13 @@
 import './styles.css';
-import BestOf3 from "./Partie/bestOf3";
 import {finGame} from "./composants/finGame";
-import {sauvegarderValeursFormulaire} from "./Historique/formulaire";
+import {sauvegarderValeursFormulaire} from "./Formulaire/sauvegardeFormulaire";
+import createBestOf3 from "./Partie/bestOf3";
+import {addLoadListenerSurWindow} from "./Formulaire/putValuesInFormulaire";
 
 const form = document.getElementById('joueursForm');
 const main = document.getElementById('main');
 
-window.addEventListener('load', function() {
-    document.getElementById('joueur1Nom').value = localStorage.getItem('joueur1Nom') || '';
-    document.getElementById('joueur1Url').value = localStorage.getItem('joueur1Url') || '';
-    document.getElementById('joueur1Token').value = localStorage.getItem('joueur1Token') || '';
-
-    document.getElementById('joueur2Nom').value = localStorage.getItem('joueur2Nom') || '';
-    document.getElementById('joueur2Url').value = localStorage.getItem('joueur2Url') || '';
-    document.getElementById('joueur2Token').value = localStorage.getItem('joueur2Token') || '';
-});
+addLoadListenerSurWindow();
 
 form.addEventListener('submit', function(event) {
     event.preventDefault();
@@ -30,8 +23,7 @@ form.addEventListener('submit', function(event) {
 
     form.remove();
 
-    const bestOf3 = new BestOf3(joueur1Nom, joueur1Token, joueur1Url, joueur2Nom, joueur2Token, joueur2Url);
-    bestOf3.createBestOf3().then((gagnant) => {
+    createBestOf3(joueur1Nom, joueur1Token, joueur1Url, joueur2Nom, joueur2Token, joueur2Url).then((gagnant) => {
         main.innerHTML = '';
         main.appendChild(finGame(gagnant, form));
     });

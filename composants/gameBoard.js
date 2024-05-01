@@ -1,18 +1,24 @@
 import Grid from "./grid.js";
 import NameTag from "./nameTag";
 import Bateaux from "./bateaux";
-import RecyclerView from "../Historique/RecyclerView";
 import BoutonQuitter from "./boutonQuitter";
 
+/**
+ * Classe du GameBoard.
+ */
 export default class GameBoard {
     constructor(joueur1, joueur2, scoreJoueur1, scoreJoueur2) {
         this.nomJoueur1 = joueur1;
         this.nomJoueur2 = joueur2;
         this.scoreJoueur1 = scoreJoueur1;
         this.scoreJoueur2 = scoreJoueur2;
-        this.recyclerView = new RecyclerView();
     }
 
+    /**
+     * Fonction qui crée la GameBoard.
+     *
+     * @returns {HTMLDivElement} Le GameBoard.
+     */
     createGameBoard() {
         let gameBoard = document.createElement("div");
         gameBoard.id = "gameBoard";
@@ -53,7 +59,13 @@ export default class GameBoard {
         return gameBoard
     }
 
-
+    /**
+     * Fonction pour update la grid.
+     *
+     * @param joueur Le joueur.
+     * @param coordonne La coordonnee.
+     * @param hit Le résultat du missile.
+     */
     updateGrid(joueur, coordonne, hit) {
         if (hit === 0) {
             document.getElementById(String(joueur) + "-" + coordonne).classList.add("bg-blue-400");
@@ -62,8 +74,13 @@ export default class GameBoard {
         }
     }
 
+    /**
+     * Fonction pour update l'état des bateaux.
+     *
+     * @param joueur Le joueur.
+     * @param resultat Le résultat du missile.
+     */
     updateBateaux(joueur, resultat) {
-        console.log(resultat)
         switch (resultat) {
             case 2:
                 document.getElementById( String(joueur) + "-porte-avions").src = "../images/porte-avions-v2-couler.png"

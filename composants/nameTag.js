@@ -1,4 +1,12 @@
-
+/**
+ * Fonction qui crée une div contenant le nom des joueurs et leurs score.
+ *
+ * @param joueur1 Le nom du joueur 1.
+ * @param joueur2 Le nom du joueur 2.
+ * @param scoreJoueur1 Le score du joueur 1.
+ * @param scoreJoueur2 Le score du joueur 2.
+ * @returns {HTMLDivElement} La div contenant les informations.
+ */
 function NameTag(joueur1, joueur2, scoreJoueur1, scoreJoueur2) {
     let nameTag = document.createElement("div");
     let nomJoueur1 = document.createElement("div");

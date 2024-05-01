@@ -1,63 +1,63 @@
-import RecyclerView from "../Historique/RecyclerView";
+import Historique from "../Historique/Historique";
 
-export default class Partie {
-    constructor(joueur1, joueur2, gameBoard) {
-        this.joueur1 = joueur1;
-        this.joueur2 = joueur2;
-        this.gameBoard = gameBoard;
-        this.historique = new RecyclerView();
-    }
+/**
+ * Fonction qui joue une seule partie.
+ *
+ * @param joueur1 Le joueur 1.
+ * @param joueur2 Le joueur 2.
+ * @param gameBoard Le gameboard de la partie.
+ * @returns {Promise<*>} Le nom du vainqueur de la partie.
+ */
+export default async function jouerUnePartie(joueur1, joueur2, gameBoard) {
+    const historique = new Historique()
+    const premierJoueur = Math.random() < 0.5 ? joueur1 : joueur2;
+    const deuxiemeJoueur = premierJoueur === joueur1 ? joueur2 : joueur1;
 
-    async JouerLaPartie() {
-        const premierJoueur = Math.random() < 0.5 ? this.joueur1 : this.joueur2;
-        const deuxiemeJoueur = premierJoueur === this.joueur1 ? this.joueur2 : this.joueur1;
+    let joueurActuel = premierJoueur;
+    let autreJoueur = deuxiemeJoueur;
 
-        let joueurActuel = premierJoueur;
-        let autreJoueur = deuxiemeJoueur;
+    const playTurn = async () => {
+        const coordonnee = await joueurActuel.shoot();
+        const resultat = autreJoueur.checkHit(coordonnee);
+        await joueurActuel.updateMissile(coordonnee, resultat);
 
-        const playTurn = async () => {
-            const coordonnee = await joueurActuel.shoot();
-            const resultat = autreJoueur.checkHit(coordonnee);
-            await joueurActuel.updateMissile(coordonnee, resultat);
-
-            if (joueurActuel === premierJoueur) {
-                this.gameBoard.updateGrid(premierJoueur.nom, coordonnee, resultat)
-                if (resultat > 1) {
-                    this.gameBoard.updateBateaux(premierJoueur.nom, resultat)
-                }
-
-            } else {
-                this.gameBoard.updateGrid(deuxiemeJoueur.nom, coordonnee, resultat)
-                if (resultat > 1) {
-                    this.gameBoard.updateBateaux(deuxiemeJoueur.nom, resultat)
-                }
+        if (joueurActuel === premierJoueur) {
+            gameBoard.updateGrid(premierJoueur.nom, coordonnee, resultat)
+            if (resultat > 1) {
+                gameBoard.updateBateaux(premierJoueur.nom, resultat)
             }
 
-            let resultatTexte;
-            switch (resultat) {
-                case 0: resultatTexte = 'À l\'eau'; break;
-                case 1: resultatTexte = 'Touché'; break;
-                case 2: resultatTexte = 'Porte-avions coulé'; break;
-                case 3: resultatTexte = 'Cuirassé coulé'; break;
-                case 4: resultatTexte = 'Destroyer coulé'; break;
-                case 5: resultatTexte = 'Sous-marin coulé'; break;
-                case 6: resultatTexte = 'Patrouilleur coulé'; break;
+        } else {
+            gameBoard.updateGrid(deuxiemeJoueur.nom, coordonnee, resultat)
+            if (resultat > 1) {
+                gameBoard.updateBateaux(deuxiemeJoueur.nom, resultat)
             }
+        }
 
-            this.historique.updateRecyclerView("[" + joueurActuel.getNom()+ "] " + coordonnee + ": " + resultatTexte);
+        let resultatTexte;
+        switch (resultat) {
+            case 0: resultatTexte = 'À l\'eau'; break;
+            case 1: resultatTexte = 'Touché'; break;
+            case 2: resultatTexte = 'Porte-avions coulé'; break;
+            case 3: resultatTexte = 'Cuirassé coulé'; break;
+            case 4: resultatTexte = 'Destroyer coulé'; break;
+            case 5: resultatTexte = 'Sous-marin coulé'; break;
+            case 6: resultatTexte = 'Patrouilleur coulé'; break;
+        }
 
-            if (resultat !== 0 && autreJoueur.aPerdu()) {
-                return joueurActuel.getNom();
-            }
+        historique.update("[" + joueurActuel.getNom()+ "] " + coordonnee + ": " + resultatTexte);
 
-            const temp = joueurActuel;
-            joueurActuel = autreJoueur;
-            autreJoueur = temp;
+        if (resultat !== 0 && autreJoueur.aPerdu()) {
+            return joueurActuel.getNom();
+        }
 
-            await new Promise(resolve => setTimeout(resolve, 350));
-            return playTurn();
-        };
+        const temp = joueurActuel;
+        joueurActuel = autreJoueur;
+        autreJoueur = temp;
 
-        return await playTurn();
-    }
+        await new Promise(resolve => setTimeout(resolve, 50));
+        return playTurn();
+    };
+
+    return await playTurn();
 }

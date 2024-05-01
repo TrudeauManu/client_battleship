@@ -1,3 +1,9 @@
+/**
+ * Fonction qui crée la div contenant les bateaux.
+ *
+ * @param joueur Le joueur.
+ * @returns {HTMLDivElement} La div contenant les bateaux.
+ */
 function Bateaux(joueur) {
     let bateauxDiv = document.createElement("div");
     let firstCol = document.createElement("div");

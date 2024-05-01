@@ -1,3 +1,10 @@
+/**
+ * Fonction qui crée une row.
+ *
+ * @param nbRow Le numéro de la row.
+ * @param id Le id de la row.
+ * @returns {HTMLDivElement} La row.
+ */
 function GameRow(nbRow, id) {
   const GameRow = document.createElement('div')
   GameRow.className = 'flex '
