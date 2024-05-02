@@ -45,6 +45,7 @@ export default async function createBestOf3(joueur1Nom, joueur1Token, joueur1Url
 
         document.getElementById('score').innerText = String(joueur1Victoires) + " - " + String(joueur2Victoires);
         if (joueur1Victoires === 2 || joueur2Victoires === 2) break;
+
         await new Promise(resolve => setTimeout(resolve, 2000));
     }
 

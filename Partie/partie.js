@@ -22,15 +22,15 @@ export default async function jouerUnePartie(joueur1, joueur2, gameBoard) {
         await joueurActuel.updateMissile(coordonnee, resultat);
 
         if (joueurActuel === premierJoueur) {
-            gameBoard.updateGrid(premierJoueur.nom, coordonnee, resultat)
-            if (resultat > 1) {
-                gameBoard.updateBateaux(premierJoueur.nom, resultat)
-            }
-
-        } else {
             gameBoard.updateGrid(deuxiemeJoueur.nom, coordonnee, resultat)
             if (resultat > 1) {
                 gameBoard.updateBateaux(deuxiemeJoueur.nom, resultat)
+            }
+
+        } else {
+            gameBoard.updateGrid(premierJoueur.nom, coordonnee, resultat)
+            if (resultat > 1) {
+                gameBoard.updateBateaux(premierJoueur.nom, resultat)
             }
         }
 
@@ -55,7 +55,7 @@ export default async function jouerUnePartie(joueur1, joueur2, gameBoard) {
         joueurActuel = autreJoueur;
         autreJoueur = temp;
 
-        await new Promise(resolve => setTimeout(resolve, 350));
+        await new Promise(resolve => setTimeout(resolve, 50));
         return playTurn();
     };
 

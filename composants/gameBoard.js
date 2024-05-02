@@ -2,6 +2,7 @@ import Grid from "./grid.js";
 import NameTag from "./nameTag";
 import Bateaux from "./bateaux";
 import BoutonQuitter from "./boutonQuitter";
+import BoutonResumePause from "./pause";
 
 /**
  * Classe du GameBoard.
@@ -24,7 +25,7 @@ export default class GameBoard {
         gameBoard.id = "gameBoard";
         gameBoard.classList.add("flex", "flex-col");
 
-        gameBoard.appendChild(new NameTag(String(this.nomJoueur1), String(this.nomJoueur2), this.scoreJoueur1, this.scoreJoueur2));
+        gameBoard.appendChild(NameTag(String(this.nomJoueur1), String(this.nomJoueur2), this.scoreJoueur1, this.scoreJoueur2));
 
         let gridDiv = document.createElement("div");
         gridDiv.id = "gridDiv";
@@ -36,10 +37,10 @@ export default class GameBoard {
         gridJoueur1.classList.add('flex', 'flex-col', 'max-w-600', 'justify-items-center', 'items-center');
         gridJoueur2.classList.add('flex', 'flex-col', 'max-w-600', 'justify-items-center', 'items-center');
 
-        gridJoueur1.appendChild(new Grid(String(this.nomJoueur1)));
-        gridJoueur1.appendChild(new Bateaux(String(this.nomJoueur1)))
-        gridJoueur2.appendChild(new Grid(String(this.nomJoueur2)));
-        gridJoueur2.appendChild(new Bateaux(String(this.nomJoueur2)))
+        gridJoueur1.appendChild(Grid(String(this.nomJoueur1)));
+        gridJoueur1.appendChild(Bateaux(String(this.nomJoueur1)))
+        gridJoueur2.appendChild(Grid(String(this.nomJoueur2)));
+        gridJoueur2.appendChild(Bateaux(String(this.nomJoueur2)))
 
         const recyclerView = document.createElement("div");
         recyclerView.className = "recycler-view shadow-2xl shadow-gray-900 bg-transparent text-white font-bold";
@@ -49,7 +50,8 @@ export default class GameBoard {
         middleBox.id = "middleBox";
         middleBox.classList.add("flex", "flex-col");
         middleBox.appendChild(recyclerView);
-        middleBox.appendChild(new BoutonQuitter())
+        //middleBox.appendChild(boutonPause());
+        middleBox.appendChild(BoutonQuitter());
 
 
         gridDiv.appendChild(gridJoueur1);

@@ -10,7 +10,7 @@ export function finGame(resultat, form) {
 
     const resultatFinal = document.createElement("h2");
     resultatFinal.textContent = "Le vainqueur est " + resultat.vainqueur.nom + " avec un score de " +
-        resultat.vainqueur.score + " contre " + resultat.perdant.nom + " avec un score de " + resultat.perdant.score;
+        resultat.vainqueur.score + " - " + resultat.perdant.score;
     resultatFinal.className = "font-bold text-3xl text-white";
 
     const button = document.createElement('button');
