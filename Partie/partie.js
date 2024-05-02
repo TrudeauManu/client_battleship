@@ -55,7 +55,7 @@ export default async function jouerUnePartie(joueur1, joueur2, gameBoard) {
         joueurActuel = autreJoueur;
         autreJoueur = temp;
 
-        await new Promise(resolve => setTimeout(resolve, 50));
+        await new Promise(resolve => setTimeout(resolve, 350));
         return playTurn();
     };
 
