@@ -1,11 +1,13 @@
 /**
  * Classe d'Historique.
+ * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
  */
 export default class Historique {
     historique = [];
 
     /**
      * Fonction pour créer un log et le mettre dans l'historique.
+     * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
      *
      * @param coup Le coup joué.
      * @returns {HTMLDivElement} Une div contenant le coup.
@@ -20,6 +22,7 @@ export default class Historique {
 
     /**
      * Fonction qui update l'historique.
+     * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
      *
      * @param coup Le coup à ajouter.
      */

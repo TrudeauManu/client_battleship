@@ -3,6 +3,7 @@ import GameRow from "./gameRow.js";
 
 /**
  * Fonction qui crée la grid du battleship.
+ * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
  *
  * @param joueur Le joueur.
  * @returns {HTMLDivElement} La grid.

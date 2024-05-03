@@ -1,5 +1,6 @@
 /**
  * Fonction qui mets les valeurs sauvegarder dans le localstorage dans le formulaire avec un event listener sur le load de la window.
+ * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
  */
 export function addLoadListenerSurWindow() {
     window.addEventListener('load', function() {

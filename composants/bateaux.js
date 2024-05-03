@@ -1,5 +1,6 @@
 /**
  * Fonction qui crée la div contenant les bateaux.
+ * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
  *
  * @param joueur Le joueur.
  * @returns {HTMLDivElement} La div contenant les bateaux.

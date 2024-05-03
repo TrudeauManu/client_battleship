@@ -1,5 +1,6 @@
 /**
  * Fonction qui crée une row.
+ * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
  *
  * @param nbRow Le numéro de la row.
  * @param id Le id de la row.

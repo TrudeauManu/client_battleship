@@ -2,6 +2,7 @@ import axios from "axios";
 
 /**
  * Classe de Joueur.
+ * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
  */
 export default class Joueur {
     constructor(nom, token, url) {
@@ -14,6 +15,7 @@ export default class Joueur {
 
     /**
      * Fonction pour créer l'instance axios.
+     * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
      */
     createInstance() {
         this.instance = axios.create({
@@ -26,6 +28,7 @@ export default class Joueur {
 
     /**
      * Fonction qui appelle la méthode POST /battleship-ia/parties/ pour recevoir les bateaux et créer une nouvelle partie.
+     * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
      *
      * @param adversaire Le nom de l'adversaire.
      * @returns {Promise<void>} La promesse de la création de la partie.
@@ -44,6 +47,7 @@ export default class Joueur {
 
     /**
      * Fonmction qui tire un missile en appellant la méthode POST /parties/{partieId}/missiles de l'api.
+     * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
      *
      * @returns {Promise<*>} Le missile créer.
      */
@@ -54,6 +58,7 @@ export default class Joueur {
 
     /**
      * Fonction qui update le résultat d'un missile lancer en appelant la méthode PUT /parties/{partieId}/missiles/{coordonnees}.
+     * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
      *
      * @param coordonnee Les coordonnees du missiles à updater.
      * @param resultat Le résultat du missile.
@@ -72,6 +77,7 @@ export default class Joueur {
 
     /**
      * Méthode qui vérifie les hits de l'adversaire sur les bateaux.
+     * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
      *
      * @param coordonnee Les coordonnees du missile.
      * @returns {number} Le resultat du missile.

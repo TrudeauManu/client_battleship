@@ -1,5 +1,6 @@
 /**
  * Fonction qui crée le message de fin de partie et le bouton pour rejouer.
+ * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
  *
  * @param resultat Le résultat de la partie.
  * @param form Le formulaire.
@@ -8,14 +9,25 @@
 export function finGame(resultat, form) {
     const main = document.getElementById("main");
 
-    const resultatFinal = document.createElement("h2");
-    resultatFinal.textContent = "Le vainqueur est " + resultat.vainqueur.nom + " avec un score de " +
-        resultat.vainqueur.score + " - " + resultat.perdant.score;
-    resultatFinal.className = "font-bold text-3xl text-white";
+    const vainqueur = document.createElement("h1");
+    vainqueur.textContent = "VAINQUEUR : " + resultat.vainqueur.nom;
+    vainqueur.className = "font-bold text-3xl text-white mb-6";
+
+    const scoreDiv = document.createElement("div");
+    scoreDiv.className = "flex flex-col justify-center items-center align-center text-center text-3xl text-white";
+
+    const nomJoueurs = document.createElement("h1");
+    nomJoueurs.textContent = resultat.vainqueur.nom + " vs " + resultat.perdant.nom;
+
+    const scoreJoueurs = document.createElement("h1");
+    scoreJoueurs.textContent = resultat.vainqueur.score + " - " + resultat.perdant.score;
+
+    scoreDiv.appendChild(nomJoueurs);
+    scoreDiv.appendChild(scoreJoueurs);
 
     const button = document.createElement('button');
     button.textContent = 'Rejouer';
-    button.className = "mt-4 px-4 py-2 bg-orange-600 text-white text-xl font-bold rounded-xl hover:bg-red-700 uppercase";
+    button.className = "mt-12 px-4 py-2 bg-orange-600 text-white text-xl font-bold rounded-xl hover:bg-red-700 uppercase";
     button.addEventListener('click', (e) => {
         main.innerHTML = '';
         main.appendChild(form);
@@ -23,7 +35,8 @@ export function finGame(resultat, form) {
 
     const div = document.createElement('div');
     div.className = "flex flex-col items-center justify-center";
-    div.appendChild(resultatFinal);
+    div.appendChild(vainqueur);
+    div.appendChild(scoreDiv);
     div.appendChild(button);
 
     return div;

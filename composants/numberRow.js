@@ -1,5 +1,6 @@
 /**
  * Fonction qui crée la row des chiffres.
+ * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
  *
  * @returns {HTMLDivElement} La div avec tout les chiffres.
  */

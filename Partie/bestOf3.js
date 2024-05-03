@@ -1,9 +1,11 @@
 import Joueur from "./joueur";
 import GameBoard from "../composants/gameBoard";
 import jouerUnePartie from "./partie";
+import {paused, togglePause} from "../composants/togglePause";
 
 /**
  * Fonction qui crée une partie de 2 de 3.
+ * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
  *
  * @param joueur1Nom Le nom du joueur 1.
  * @param joueur1Token Le token du joueur 1.
@@ -20,6 +22,10 @@ export default async function createBestOf3(joueur1Nom, joueur1Token, joueur1Url
 
 
     for (let i = 0; i < 3; i++) {
+        while (paused) {
+            await new Promise(resolve => setTimeout(resolve, 100));
+        }
+
         const joueur1 = new Joueur(joueur1Nom, joueur1Token, joueur1Url);
         const joueur2 = new Joueur(joueur2Nom, joueur2Token, joueur2Url);
 
@@ -46,7 +52,7 @@ export default async function createBestOf3(joueur1Nom, joueur1Token, joueur1Url
         document.getElementById('score').innerText = String(joueur1Victoires) + " - " + String(joueur2Victoires);
         if (joueur1Victoires === 2 || joueur2Victoires === 2) break;
 
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        togglePause();
     }
 
     if (joueur1Victoires > joueur2Victoires) {

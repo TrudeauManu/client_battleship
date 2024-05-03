@@ -2,10 +2,11 @@ import Grid from "./grid.js";
 import NameTag from "./nameTag";
 import Bateaux from "./bateaux";
 import BoutonQuitter from "./boutonQuitter";
-import BoutonResumePause from "./pause";
+import boutonPause from "./pause";
 
 /**
  * Classe du GameBoard.
+ * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
  */
 export default class GameBoard {
     constructor(joueur1, joueur2, scoreJoueur1, scoreJoueur2) {
@@ -17,6 +18,7 @@ export default class GameBoard {
 
     /**
      * Fonction qui crée la GameBoard.
+     * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
      *
      * @returns {HTMLDivElement} Le GameBoard.
      */
@@ -50,7 +52,7 @@ export default class GameBoard {
         middleBox.id = "middleBox";
         middleBox.classList.add("flex", "flex-col");
         middleBox.appendChild(recyclerView);
-        //middleBox.appendChild(boutonPause());
+        middleBox.appendChild(boutonPause());
         middleBox.appendChild(BoutonQuitter());
 
 
@@ -63,6 +65,7 @@ export default class GameBoard {
 
     /**
      * Fonction pour update la grid.
+     * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
      *
      * @param joueur Le joueur.
      * @param coordonne La coordonnee.
@@ -78,6 +81,7 @@ export default class GameBoard {
 
     /**
      * Fonction pour update l'état des bateaux.
+     * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
      *
      * @param joueur Le joueur.
      * @param resultat Le résultat du missile.

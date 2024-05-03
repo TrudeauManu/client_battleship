@@ -1,7 +1,9 @@
 import Historique from "../Historique/Historique";
+import {paused} from "../composants/togglePause";
 
 /**
  * Fonction qui joue une seule partie.
+ * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
  *
  * @param joueur1 Le joueur 1.
  * @param joueur2 Le joueur 2.
@@ -55,9 +57,16 @@ export default async function jouerUnePartie(joueur1, joueur2, gameBoard) {
         joueurActuel = autreJoueur;
         autreJoueur = temp;
 
-        await new Promise(resolve => setTimeout(resolve, 50));
+        await new Promise(resolve => setTimeout(resolve, 250));
+        if (!paused) {
+            return playTurn();
+        }
+        while (paused) {
+            await new Promise(resolve => setTimeout(resolve, 300));
+        }
         return playTurn();
     };
+
 
     return await playTurn();
 }
