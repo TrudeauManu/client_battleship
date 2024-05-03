@@ -13,8 +13,7 @@ import {paused, togglePause} from "../composants/togglePause";
  * @param joueur2Nom Le nom du joueur 2.
  * @param joueur2Token Le token du joueur 2.
  * @param joueur2Url L'url du joueur 2.
- * @returns {Promise<{vainqueur: {score: number, nom}, perdant: {score: number, nom}}>} Un objet contenant le vainqueur
- * et le perdant du 2 de 3.
+ * @returns {Promise<{vainqueur: {score: number, nom}, perdant: {score: number, nom}}>} Un objet contenant le vainqueur et le perdant du 2 de 3.
  */
 export default async function createBestOf3(joueur1Nom, joueur1Token, joueur1Url, joueur2Nom, joueur2Token, joueur2Url) {
     let joueur1Victoires = 0;
@@ -29,14 +28,18 @@ export default async function createBestOf3(joueur1Nom, joueur1Token, joueur1Url
         const joueur1 = new Joueur(joueur1Nom, joueur1Token, joueur1Url);
         const joueur2 = new Joueur(joueur2Nom, joueur2Token, joueur2Url);
 
-        await joueur1.getShips(joueur2Nom);
-        await joueur2.getShips(joueur1Nom);
+        await joueur1.creerBateaux(joueur2Nom);
+        await joueur2.creerBateaux(joueur1Nom);
 
-        let gameBoard = new GameBoard(joueur1Nom, joueur2Nom, joueur1Victoires, joueur2Victoires);
+        let gameBoard = new GameBoard(joueur1Nom, joueur2Nom, joueur1Victoires, joueur2Victoires, joueur1, joueur2);
+
 
         const main = document.getElementById('main');
         main.innerHTML = '';
         main.appendChild(gameBoard.createGameBoard())
+
+        gameBoard.putShipsInGrid(joueur1);
+        gameBoard.putShipsInGrid(joueur2);
 
         const vainqueur = await jouerUnePartie(joueur1, joueur2, gameBoard);
 

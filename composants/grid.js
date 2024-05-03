@@ -9,19 +9,19 @@ import GameRow from "./gameRow.js";
  * @returns {HTMLDivElement} La grid.
  */
 function Grid(joueur) {
-  const Grid = document.createElement('div')
-  Grid.className = "flex flex-col m-2 text-white"
+  const grid = document.createElement('div')
+  grid.className = "flex flex-col m-2 text-white"
 
   for (let col = 0; col < 11; col++) {
     if (col === 0 ) {
-      Grid.appendChild(NumberRow());
+      grid.appendChild(NumberRow());
     } else {
       let gameRow = GameRow(col, joueur)
-      Grid.appendChild(gameRow);
+      grid.appendChild(gameRow);
     }
   }
 
-  return Grid;
+  return grid;
 }
 
 export default Grid;

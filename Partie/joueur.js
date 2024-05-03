@@ -33,7 +33,7 @@ export default class Joueur {
      * @param adversaire Le nom de l'adversaire.
      * @returns {Promise<void>} La promesse de la création de la partie.
      */
-    async getShips(adversaire) {
+    async creerBateaux(adversaire) {
         const config = {
             params: {
                 adversaire: adversaire,
@@ -110,6 +110,7 @@ export default class Joueur {
 
     /**
      * Fonction qui vérifie si le joueur a perdu.
+     * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
      *
      * @returns {boolean} True si il a perdu et False si il n'a pas perdu.
      */
@@ -124,6 +125,7 @@ export default class Joueur {
 
     /**
      * Fonction qui retourne le nom du joueur.
+     * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
      *
      * @returns {String}
      */
@@ -132,7 +134,19 @@ export default class Joueur {
     }
 
     /**
+     * Fonction qui retourne les bateaux du joueur.
+     * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
+     *
+     * @returns {*}
+     */
+    getBateaux() {
+        return this.bateaux;
+    }
+
+
+    /**
      * Fonction qui delete la partie.
+     * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
      *
      * @returns {Promise<void>}
      */

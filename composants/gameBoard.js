@@ -9,11 +9,13 @@ import boutonPause from "./pause";
  * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
  */
 export default class GameBoard {
-    constructor(joueur1, joueur2, scoreJoueur1, scoreJoueur2) {
-        this.nomJoueur1 = joueur1;
-        this.nomJoueur2 = joueur2;
+    constructor(nomJoueur1, nomJoueur2, scoreJoueur1, scoreJoueur2, joueur1, joueur2) {
+        this.nomJoueur1 = nomJoueur1;
+        this.nomJoueur2 = nomJoueur2;
         this.scoreJoueur1 = scoreJoueur1;
         this.scoreJoueur2 = scoreJoueur2;
+        this.joueur1 = joueur1;
+        this.joueur2 = joueur2;
     }
 
     /**
@@ -43,6 +45,7 @@ export default class GameBoard {
         gridJoueur1.appendChild(Bateaux(String(this.nomJoueur1)))
         gridJoueur2.appendChild(Grid(String(this.nomJoueur2)));
         gridJoueur2.appendChild(Bateaux(String(this.nomJoueur2)))
+
 
         const recyclerView = document.createElement("div");
         recyclerView.className = "recycler-view shadow-2xl shadow-gray-900 bg-transparent text-white font-bold";
@@ -76,6 +79,24 @@ export default class GameBoard {
             document.getElementById(String(joueur) + "-" + coordonne).classList.add("bg-blue-400");
         } else {
             document.getElementById(String(joueur) + "-" + coordonne).classList.add("bg-red-400");
+        }
+    }
+
+    /**
+     * Fonction qui place les bateaux du joueur dans sa grid.
+     * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
+     *
+     * @param joueur Le joueur.
+     */
+    putShipsInGrid(joueur) {
+        const bateaux = joueur.getBateaux();
+        const nom = joueur.getNom();
+
+        for (let type in bateaux) {
+            const positions = bateaux[type];
+            positions.forEach(position => {
+                document.getElementById(String(nom + "-" + position)).classList.add("bg-gray-500");
+            })
         }
     }
 
