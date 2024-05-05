@@ -1,5 +1,5 @@
 /**
- * Fonction qui crée une div contenant le nom des joueurs et leurs score.
+ * Fonction qui crée une div contenant le nom des joueurs et leur score.
  * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
  *
  * @param joueur1 Le nom du joueur 1.

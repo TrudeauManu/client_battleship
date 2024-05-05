@@ -2,7 +2,7 @@ import Historique from "../Historique/Historique";
 import {paused} from "../composants/togglePause";
 
 /**
- * Fonction qui joue une seule partie.
+ * Fonction qui joue une partie.
  * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
  *
  * @param joueur1 Le joueur 1.
@@ -18,6 +18,11 @@ export default async function jouerUnePartie(joueur1, joueur2, gameBoard) {
     let joueurActuel = premierJoueur;
     let autreJoueur = deuxiemeJoueur;
 
+    /**
+     * Joue un tour.
+     *
+     * @returns {Promise<String|*>} Le prochain tour.
+     */
     const playTurn = async () => {
         const coordonnee = await joueurActuel.shoot();
         const resultat = autreJoueur.checkHit(coordonnee);

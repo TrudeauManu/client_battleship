@@ -1,11 +1,11 @@
 /**
- * Fonction qui crée la div contenant les bateaux.
+ * Fonction qui crée la div contenant les images des états des bateaux.
  * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
  *
- * @param joueur Le joueur.
- * @returns {HTMLDivElement} La div contenant les bateaux.
+ * @param nomJoueur Le nom du joueur à qui appartient les bateaux.
+ * @returns {HTMLDivElement} La div contenant les images des états des bateaux.
  */
-function Bateaux(joueur) {
+function Bateaux(nomJoueur) {
     let bateauxDiv = document.createElement("div");
     let firstCol = document.createElement("div");
     let secondCol = document.createElement("div");
@@ -22,23 +22,23 @@ function Bateaux(joueur) {
 
     let porteAvions = document.createElement("img");
     porteAvions.src = "../images/porte-avions-v2.webp";
-    porteAvions.id = String(joueur) + "-porte-avions";
+    porteAvions.id = String(nomJoueur) + "-porte-avions";
 
     let cuirasse = document.createElement("img");
     cuirasse.src = "../images/cuirasse-v2.png";
-    cuirasse.id = String(joueur) + "-cuirasse";
+    cuirasse.id = String(nomJoueur) + "-cuirasse";
 
     let sousMarin = document.createElement("img");
     sousMarin.src = "../images/sous-marin-v2.png";
-    sousMarin.id = String(joueur) + "-sous-marin";
+    sousMarin.id = String(nomJoueur) + "-sous-marin";
 
     let destroyer = document.createElement("img");
     destroyer.src = "../images/destroyer-v2.png";
-    destroyer.id = String(joueur) + "-destroyer";
+    destroyer.id = String(nomJoueur) + "-destroyer";
 
     let patrouilleur = document.createElement("img");
     patrouilleur.src = "../images/patrouilleur-v2.webp";
-    patrouilleur.id = String(joueur) + "-patrouilleur";
+    patrouilleur.id = String(nomJoueur) + "-patrouilleur";
 
     firstCol.appendChild(porteAvions);
     firstCol.appendChild(cuirasse);

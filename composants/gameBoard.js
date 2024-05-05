@@ -5,22 +5,27 @@ import BoutonQuitter from "./boutonQuitter";
 import boutonPause from "./pause";
 
 /**
- * Classe du GameBoard.
+ * Contient les informations et les fonctions du GameBoard.
  * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
  */
 export default class GameBoard {
-    constructor(nomJoueur1, nomJoueur2, scoreJoueur1, scoreJoueur2, joueur1, joueur2) {
+    /**
+     * Constructeur.
+     *
+     * @param nomJoueur1 Le nom du joueur 1.
+     * @param nomJoueur2 Le nom du joueur 2.
+     * @param scoreJoueur1 Le score du joueur 1.
+     * @param scoreJoueur2 Le score du joueur 2.
+     */
+    constructor(nomJoueur1, nomJoueur2, scoreJoueur1, scoreJoueur2) {
         this.nomJoueur1 = nomJoueur1;
         this.nomJoueur2 = nomJoueur2;
         this.scoreJoueur1 = scoreJoueur1;
         this.scoreJoueur2 = scoreJoueur2;
-        this.joueur1 = joueur1;
-        this.joueur2 = joueur2;
     }
 
     /**
-     * Fonction qui crée la GameBoard.
-     * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
+     * Fonction qui crée le GameBoard.
      *
      * @returns {HTMLDivElement} Le GameBoard.
      */
@@ -67,24 +72,22 @@ export default class GameBoard {
     }
 
     /**
-     * Fonction pour update la grid.
-     * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
+     * Fonction pour update la grid selon le hit d'un missile.
      *
-     * @param joueur Le joueur.
-     * @param coordonne La coordonnee.
+     * @param nomJoueur Le nom du joueur qui reçoit le missile.
+     * @param coordonne Les coordonnees du missile.
      * @param hit Le résultat du missile.
      */
-    updateGrid(joueur, coordonne, hit) {
+    updateGrid(nomJoueur, coordonne, hit) {
         if (hit === 0) {
-            document.getElementById(String(joueur) + "-" + coordonne).classList.add("bg-blue-400");
+            document.getElementById(String(nomJoueur) + "-" + coordonne).classList.add("bg-blue-400");
         } else {
-            document.getElementById(String(joueur) + "-" + coordonne).classList.add("bg-red-400");
+            document.getElementById(String(nomJoueur) + "-" + coordonne).classList.add("bg-red-400");
         }
     }
 
     /**
      * Fonction qui place les bateaux du joueur dans sa grid.
-     * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
      *
      * @param joueur Le joueur.
      */
@@ -101,28 +104,27 @@ export default class GameBoard {
     }
 
     /**
-     * Fonction pour update l'état des bateaux.
-     * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
+     * Fonction qui update l'état des bateaux.
      *
-     * @param joueur Le joueur.
+     * @param nomJoueur Le nom du joueur.
      * @param resultat Le résultat du missile.
      */
-    updateBateaux(joueur, resultat) {
+    updateBateaux(nomJoueur, resultat) {
         switch (resultat) {
             case 2:
-                document.getElementById( String(joueur) + "-porte-avions").src = "../images/porte-avions-v2-couler.png"
+                document.getElementById( String(nomJoueur) + "-porte-avions").src = "../images/porte-avions-v2-couler.png"
                 break;
             case 3:
-                document.getElementById(String(joueur) + "-cuirasse").src = "../images/cuirasse-v2-couler.png"
+                document.getElementById(String(nomJoueur) + "-cuirasse").src = "../images/cuirasse-v2-couler.png"
                 break;
             case 4:
-                document.getElementById(String(joueur) + "-destroyer").src = "../images/destroyer-v2-couler.png"
+                document.getElementById(String(nomJoueur) + "-destroyer").src = "../images/destroyer-v2-couler.png"
                 break;
             case 5:
-                document.getElementById(String(joueur) + "-sous-marin").src = "../images/sous-marin-v2-couler.png"
+                document.getElementById(String(nomJoueur) + "-sous-marin").src = "../images/sous-marin-v2-couler.png"
                 break;
             default:
-                document.getElementById(String(joueur) + "-patrouilleur").src = "../images/patrouilleur-v2-couler.png"
+                document.getElementById(String(nomJoueur) + "-patrouilleur").src = "../images/patrouilleur-v2-couler.png"
                 break;
         }
     }

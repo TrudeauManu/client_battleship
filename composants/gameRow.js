@@ -1,12 +1,12 @@
 /**
- * Fonction qui crée une row.
+ * Fonction qui crée une row qui contient des tuiles de jeu.
  * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
  *
  * @param col Le numéro de la row.
- * @param id Le id de la row.
+ * @param nomJoueur Le nom du joueur à qui appartient la row.
  * @returns {HTMLDivElement} La row.
  */
-function GameRow(col, id) {
+function GameRow(col, nomJoueur) {
   const GameRow = document.createElement('div')
   GameRow.className = 'flex '
 
@@ -20,7 +20,7 @@ function GameRow(col, id) {
       carre.className += " font-bold"
       carre.appendChild(text)
     } else {
-      carre.id = id + "-" + String.fromCharCode(64 + col) + "-" + row
+      carre.id = nomJoueur + "-" + String.fromCharCode(64 + col) + "-" + row
     }
 
     GameRow.appendChild(carre);

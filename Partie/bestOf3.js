@@ -4,21 +4,21 @@ import jouerUnePartie from "./partie";
 import {paused, togglePause} from "../composants/togglePause";
 
 /**
- * Fonction qui crée une partie de 2 de 3.
+ * Fonction qui crée une série de 2 de 3 de partie.
  * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
  *
  * @param joueur1Nom Le nom du joueur 1.
  * @param joueur1Token Le token du joueur 1.
- * @param joueur1Url L'url du joueur 1.
+ * @param joueur1Url L'url de l'api du joueur 1.
  * @param joueur2Nom Le nom du joueur 2.
  * @param joueur2Token Le token du joueur 2.
- * @param joueur2Url L'url du joueur 2.
+ * @param joueur2Url L'url de l'api du joueur 2.
+ *
  * @returns {Promise<{vainqueur: {score: number, nom}, perdant: {score: number, nom}}>} Un objet contenant le vainqueur et le perdant du 2 de 3.
  */
 export default async function createBestOf3(joueur1Nom, joueur1Token, joueur1Url, joueur2Nom, joueur2Token, joueur2Url) {
     let joueur1Victoires = 0;
     let joueur2Victoires = 0;
-
 
     for (let i = 0; i < 3; i++) {
         while (paused) {
@@ -31,8 +31,7 @@ export default async function createBestOf3(joueur1Nom, joueur1Token, joueur1Url
         await joueur1.creerBateaux(joueur2Nom);
         await joueur2.creerBateaux(joueur1Nom);
 
-        let gameBoard = new GameBoard(joueur1Nom, joueur2Nom, joueur1Victoires, joueur2Victoires, joueur1, joueur2);
-
+        let gameBoard = new GameBoard(joueur1Nom, joueur2Nom, joueur1Victoires, joueur2Victoires);
 
         const main = document.getElementById('main');
         main.innerHTML = '';
@@ -58,15 +57,13 @@ export default async function createBestOf3(joueur1Nom, joueur1Token, joueur1Url
         togglePause();
     }
 
-    if (joueur1Victoires > joueur2Victoires) {
-        return {
+    return joueur1Victoires > joueur2Victoires ?
+        {
             vainqueur: { nom: joueur1Nom, score: joueur1Victoires },
             perdant: { nom: joueur2Nom, score: joueur2Victoires },
-        };
-    } else if (joueur2Victoires > joueur1Victoires) {
-        return {
+        } :
+        {
             vainqueur: { nom: joueur2Nom, score: joueur2Victoires },
             perdant: { nom: joueur1Nom, score: joueur1Victoires },
-        };
-    }
+        }
 };

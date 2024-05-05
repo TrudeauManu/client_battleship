@@ -1,10 +1,17 @@
 import axios from "axios";
 
 /**
- * Classe de Joueur.
+ * Contient les informations et les fonctions d'un Joueur.
  * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
  */
 export default class Joueur {
+    /**
+     * Constructeur.
+     *
+     * @param nom Le nom du joueur.
+     * @param token Le token du joueur.
+     * @param url L'url de l'api du joueur.
+     */
     constructor(nom, token, url) {
         this.nom = nom;
         this.token = token;
@@ -14,8 +21,7 @@ export default class Joueur {
     }
 
     /**
-     * Fonction pour créer l'instance axios.
-     * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
+     * Fonction pour créer l'instance axios et mettre des paramètres par défauts.
      */
     createInstance() {
         this.instance = axios.create({
@@ -27,8 +33,8 @@ export default class Joueur {
     }
 
     /**
-     * Fonction qui appelle la méthode POST /battleship-ia/parties/ pour recevoir les bateaux et créer une nouvelle partie.
-     * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
+     * Fonction qui appelle la méthode POST /battleship-ia/parties/
+     * pour créer une nouvelle partie et recevoir les positions de ces bateaux.
      *
      * @param adversaire Le nom de l'adversaire.
      * @returns {Promise<void>} La promesse de la création de la partie.
@@ -46,8 +52,7 @@ export default class Joueur {
     }
 
     /**
-     * Fonmction qui tire un missile en appellant la méthode POST /parties/{partieId}/missiles de l'api.
-     * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
+     * Fonction qui tire un missile en appellant la méthode POST /parties/{partieId}/missiles de l'api.
      *
      * @returns {Promise<*>} Le missile créer.
      */
@@ -58,7 +63,6 @@ export default class Joueur {
 
     /**
      * Fonction qui update le résultat d'un missile lancer en appelant la méthode PUT /parties/{partieId}/missiles/{coordonnees}.
-     * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
      *
      * @param coordonnee Les coordonnees du missiles à updater.
      * @param resultat Le résultat du missile.
@@ -77,7 +81,6 @@ export default class Joueur {
 
     /**
      * Méthode qui vérifie les hits de l'adversaire sur les bateaux.
-     * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
      *
      * @param coordonnee Les coordonnees du missile.
      * @returns {number} Le resultat du missile.
@@ -110,7 +113,6 @@ export default class Joueur {
 
     /**
      * Fonction qui vérifie si le joueur a perdu.
-     * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
      *
      * @returns {boolean} True si il a perdu et False si il n'a pas perdu.
      */
@@ -125,7 +127,6 @@ export default class Joueur {
 
     /**
      * Fonction qui retourne le nom du joueur.
-     * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
      *
      * @returns {String}
      */
@@ -135,7 +136,6 @@ export default class Joueur {
 
     /**
      * Fonction qui retourne les bateaux du joueur.
-     * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
      *
      * @returns {*}
      */
@@ -146,7 +146,6 @@ export default class Joueur {
 
     /**
      * Fonction qui delete la partie.
-     * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
      *
      * @returns {Promise<void>}
      */

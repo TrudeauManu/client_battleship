@@ -1,5 +1,5 @@
 /**
- * Fonction qui crée le button quitter.
+ * Fonction qui crée un bouton pour quitter.
  * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
  *
  * @returns {HTMLButtonElement} Le bouton.
@@ -15,4 +15,4 @@ function BoutonQuitter() {
     return boutonQuitter
 }
 
-export default BoutonQuitter
+export default BoutonQuitter;

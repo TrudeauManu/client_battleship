@@ -2,20 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Style de chaque pixel du canvas */
+/* Style de chaque pixel de la grid */
 .pixel {
     height: 50px;
     width: 50px;
     border: 1px solid white;
 }
 
-/* Coin */
+/* Style du coin de la grid */
 .coin {
     height: 50px;
     width: 50px;
 }
 
-/* Recycler View */
+/* Style de recycler view pour l'historique */
 .recycler-view {
     overflow-y: scroll;
     height: 450px;
@@ -27,12 +27,12 @@
     display: none;
 }
 
-/* Log de recycler view */
+/* Styole de log de l'historique */
 .log {
     padding: 10px;
 }
 
-/* Bateaux */
+/* Stle de bateaux */
 .bateaux {
     min-width: 200px;
 }

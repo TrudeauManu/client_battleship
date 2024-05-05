@@ -1,5 +1,5 @@
 /**
- * Classe d'Historique.
+ * Contient les informations de l'historique.
  * @author Emmanuel Trudeau & Marc-Alexandre Bouchard
  */
 export default class Historique {
